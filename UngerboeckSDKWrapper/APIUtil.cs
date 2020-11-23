@@ -180,6 +180,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<T> GetAsync<T>(HttpClient USISDKClient, string URL)
     {
       HttpResponseMessage response = await USISDKClient.GetAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}").ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (SuccessResponse(response))
       {
         T Model = await response.Content.ReadAsAsync<T>();
@@ -194,6 +195,7 @@ namespace UngerboeckSDKWrapper
       //This is needed for Documents Download, which comes in as an octet and isn't compatible with ReadAsAsync
 
       HttpResponseMessage response = await USISDKClient.GetAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}").ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (SuccessResponse(response))
       {
         string Model = await response.Content.ReadAsStringAsync();
@@ -206,6 +208,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<T> PostAsync<T>(HttpClient USISDKClient, string URL, T item)
     {
       var response = await USISDKClient.PostAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (SuccessResponse(response))
       {
         return await response.Content.ReadAsAsync<T>();
@@ -217,6 +220,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<K> PostAsync<T, K>(HttpClient USISDKClient, string URL, T item)
     {
       var response = await USISDKClient.PostAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (SuccessResponse(response))
       {
         return await response.Content.ReadAsAsync<K>();
@@ -228,6 +232,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<T> PutAsync<T>(HttpClient USISDKClient, string URL, T item)
     {
       HttpResponseMessage response = await USISDKClient.PutAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (APIUtil.SuccessResponse(response))
       {
         var updatedModel = await response.Content.ReadAsAsync<T>();
@@ -240,6 +245,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<K> PutAsync<T, K>(HttpClient USISDKClient, string URL, T item)
     {
       HttpResponseMessage response = await USISDKClient.PutAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (APIUtil.SuccessResponse(response))
       {
         var updatedModel = await response.Content.ReadAsAsync<K>();
@@ -252,6 +258,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<T> PutAsyncBulk<T, U>(HttpClient USISDKClient, string URL, U item)
     {
       HttpResponseMessage response = await USISDKClient.PutAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (APIUtil.SuccessResponse(response))
       {
         var updatedModel = await response.Content.ReadAsAsync<T>();
@@ -264,6 +271,7 @@ namespace UngerboeckSDKWrapper
     private static async Task<T> DeleteAsync<T>(HttpClient USISDKClient, string URL)
     {
       HttpResponseMessage response = await USISDKClient.DeleteAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}").ConfigureAwait(false);
+      response.ReasonPhrase = (await response.Content.ReadAsStringAsync()).Replace(Environment.NewLine, " ");
       if (APIUtil.SuccessResponse(response))
       {
         var updatedModel = await response.Content.ReadAsAsync<T>();
