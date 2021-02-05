@@ -21,6 +21,8 @@ Important tip about upgrading the SDK: The UngerboeckSDKPackage and UngerboeckSD
 
 ##20.96 Updates 2020-02-05:
 
--Added models, wrapper functions and examples for over 100 new Endpoints
+-Added models, wrapper functions and examples for over new Endpoints
+
+-Added new upgrades towards 20.97 release
 
 -Added Important tip about upgrading above
