@@ -18,6 +18,9 @@ At any time, you can see the matching Ungerboeck version of the SDKPackage or SD
 
 Important tip about upgrading the SDK: The UngerboeckSDKPackage and UngerboeckSDKWrapper is designed to be forwards compatible.  Upgrading from nuget to keep up with you Ungerboeck version isn't necessary.  You typically only upgrade to take advantage of new features.
 
+
 ##20.96 Updates 2020-02-05:
+
 -Added models, wrapper functions and examples for over 100 new Endpoints
+
 -Added Important tip about upgrading above
