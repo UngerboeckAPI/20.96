@@ -205,7 +205,8 @@ namespace UngerboeckSDKWrapper
 
     private static async Task<T> PostAsync<T>(HttpClient USISDKClient, string URL, T item)
     {
-      var response = await USISDKClient.PostAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+      var response = await USISDKClient.PostAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", content).ConfigureAwait(false);
       if (SuccessResponse(response))
       {
         return await response.Content.ReadAsAsync<T>();
@@ -216,7 +217,8 @@ namespace UngerboeckSDKWrapper
 
     private static async Task<K> PostAsync<T, K>(HttpClient USISDKClient, string URL, T item)
     {
-      var response = await USISDKClient.PostAsJsonAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", item).ConfigureAwait(false);
+      var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+      var response = await USISDKClient.PostAsync($"{USISDKClient.BaseAddress}/api/v1/{URL}", content).ConfigureAwait(false);
       if (SuccessResponse(response))
       {
         return await response.Content.ReadAsAsync<K>();
